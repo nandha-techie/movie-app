@@ -14,7 +14,8 @@ function App() {
   }, []);
   
   const searchMovies = async (title)=> {
-      const response = await fetch(`${API_URL}&s=${title}`);
+    const header = {"Access-Control-Allow-Origin" : "*", "Access-Control-Allow-Credentials" : true };
+      const response = await fetch(`${API_URL}&s=${title}`, header);
       const data = await response.json();
       setMovies(data.Search);
   }
