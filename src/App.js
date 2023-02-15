@@ -14,12 +14,17 @@ function App() {
   }, []);
   
   const searchMovies = async (title)=> {
+    console.log("vvv" + title)
     const header = { method: 'GET',
       headers: {
         accept: 'application/json'}};
-      const response = await fetch(`${API_URL}&s=${title}`, header);
-      const data = await response.json();
-      setMovies(data.Search);
+          const response = await fetch(`${API_URL}&s=${title}`, header);
+          const data = await response.json();
+          if(data.Response === 'True'){
+            setMovies(data.Search);
+          }else{
+            setMovies([]);
+          }
   }
 
   return (
